@@ -14,6 +14,7 @@ namespace Abc041124
         static void Main()
         {
             int num;
+            int numCoice;
 
             string strTemp = "";
             string logOut = "exit";
@@ -24,38 +25,164 @@ namespace Abc041124
             Seller sell = new Seller();
             Plaer play = new Plaer();
 
-            sell.AddItemsSellor(program.RandomItems(), program.RandomMultyPlex(),  program.RandomCost() );
-            sell.AddItemsSellor(program.RandomItems(), program.RandomMultyPlex(),  program.RandomCost() );
-            sell.AddItemsSellor(program.RandomItems(), program.RandomMultyPlex(),  program.RandomCost() );
-            //play.AddItemsPlaer(program.RandomItems(), program.RandomMultyPlex(), program.RandomCost());
-
+            sell.AddItemsSeller(program.RandomItems(), program.RandomMultyPlex(),  program.RandomCost() );
+            sell.AddItemsSeller(program.RandomItems(), program.RandomMultyPlex(),  program.RandomCost() );
+            sell.AddItemsSeller(program.RandomItems(), program.RandomMultyPlex(),  program.RandomCost() );
+            sell.AddItemsSeller(program.RandomItems(), program.RandomMultyPlex(),  program.RandomCost() );
+            sell.AddItemsSeller(program.RandomItems(), program.RandomMultyPlex(),  program.RandomCost() );
+            play.AddItemsPlaer(program.RandomItems(), program.RandomMultyPlex(), program.RandomCost());
+/*
             sell.ShowInventorySellor();
             play.ShowInventoryPlaer();
-
+*/
             while (!isChoice && logOut != strTemp.ToLower())
             {
-                Console.WriteLine("Нажмите 1 что бы купить\n2 что бы продать");
+                sell.ShowInventorySellor();
+                play.ShowInventoryPlaer();
+
+                Console.Write("(1) Нажмите что бы купить\n(2) Нажмите что бы продать\nЧто ты хочешь сделать?\nТвой выбор -> ");
                 strTemp = Console.ReadLine();
-                if(int.TryParse(strTemp,out num))
+
+                if (int.TryParse(strTemp, out num))
                 {
-                    switch(num)
+                    strTemp = "";
+
+                    switch (num)
                     {
                         case 1:
-                            Console.Write("Выбери номер предмета -> ");
-                            num = Convert.ToInt32(Console.ReadLine());
-                            play.AddItemsPlaer(sell.ReturnNameSellor(num),sell.ReturnCostSellor(num),sell.ReturnMultyPlex(num));
-                            sell.RemuveToIndex(num);
+                            PlayerBuy();
+                            break;
+
+                        case 2:
+                            SellerBuy();
+                            break;
+
+                        default:
+                            Console.WriteLine("Неправельный ввод\nНажмите любую клавишу\n");
                             Console.ReadKey();
                             Console.Clear();
-                            sell.ShowInventorySellor();
-                            play.ShowInventoryPlaer();
-                            Console.ReadKey();
                             break;
                     }
                 }
+                else
+                {
+                    Console.WriteLine("Неправельный ввод\nНажмите любую клавишу\n");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
             }
 
+             void PlayerBuy()
+            {
+                
 
+                if (sell.LengthOfList())
+                {                                        
+                        Console.Write("Выбери номер предмета -> ");
+                        strTemp = Console.ReadLine();
+
+                    Console.Clear();
+
+                    while (int.TryParse(strTemp, out num))
+                    {
+                        Console.Clear();
+
+                        strTemp = "";
+
+                        if (play.money > sell.ReturnCostSeller(num))
+                        {
+                            sell.money += sell.ReturnCostSeller(num);
+                            play.money -= sell.ReturnCostSeller(num);
+
+                            play.AddItemsPlaer(sell.ReturnNameSeller(num), sell.ReturnMultyPlex(num), sell.ReturnCostSeller(num));
+
+                            sell.RemuveToIndex(num);    
+                            
+                            sell.ShowInventorySellor();
+                            play.ShowInventoryPlaer();
+
+                            Console.WriteLine("Нажмите любую клавишу\n");
+
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+                        else
+                        {
+                            Console.Clear();
+
+                            sell.ShowInventorySellor();
+                            play.ShowInventoryPlaer();
+
+                            Console.WriteLine("У вас нет денег!!!");
+                            Console.WriteLine("Нажмите любую клавишу\n");
+
+                            Console.ReadKey();
+                            Console.Clear();
+                        } 
+                    }
+                }
+                else
+                {
+
+                    Console.Clear();
+                    sell.ShowInventorySellor();
+                    play.ShowInventoryPlaer();
+                    Console.WriteLine("Товаров нет\n");                   
+                    Console.WriteLine("Нажмите любую клавишу\n");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+            }
+
+            void SellerBuy()
+            {
+                if (play.LengthOfList())
+                {
+                    Console.Write("Выбери номер предмета -> ");
+                    strTemp = Console.ReadLine();
+
+                    Console.Clear();
+
+                    while (int.TryParse(strTemp, out num))
+                    {
+                        Console.Clear();
+
+                        strTemp = "";
+
+                        if (sell.money > play.ReturnCostSeller(num))
+                        {
+                            play.money += play.ReturnCostSeller(num);
+                            sell.money -= play.ReturnCostSeller(num);
+                            sell.AddItemsSeller(play.ReturnNameSeller(num), play.ReturnMultyPlex(num), play.ReturnCostSeller(num));
+                            play.RemuveToIndex(num);
+                            sell.ShowInventorySellor();
+                            play.ShowInventoryPlaer();
+                            Console.WriteLine("Нажмите любую клавишу\n");
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+                        else
+                        { Console.Clear();
+                            sell.ShowInventorySellor();
+                            play.ShowInventoryPlaer();
+                            Console.WriteLine("У магазина нет денег!!!");
+                            Console.WriteLine("Нажмите любую клавишу\n");
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+                    }
+                }
+                else
+                {
+                    Console.Clear();
+                    sell.ShowInventorySellor();
+                    play.ShowInventoryPlaer();
+                    Console.WriteLine("Товаров нет\n");                   
+                    Console.WriteLine("Нажмите любую клавишу\n");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+            }
         }  
         public string RandomItems()
         {
@@ -72,6 +199,7 @@ namespace Abc041124
         {           
             return rnd.Next(1, 5) * 50;
         }
+        
     }
 }   
 

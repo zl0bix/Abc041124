@@ -10,12 +10,15 @@ namespace Abc041124
     {
        public List<Item> _plaerInventory = new List<Item>();
 
+       public int money = 400;
+
         public void ShowInventoryPlaer()
         {
-            Console.WriteLine("Товары игрока:\n");
+            Console.WriteLine("Твои деньги\t" + money + "\nТвои товары:\n");
+
             if(_plaerInventory.Count == 0)
             {
-                Console.WriteLine("У игрока нет предметов (((");
+                Console.WriteLine("У игрока нет предметов (((\n");
             }
             for (int i = 0; i < _plaerInventory.Count; ++i)
             {             
@@ -50,6 +53,15 @@ namespace Abc041124
                     Console.WriteLine("\tцена\t" + _plaerInventory[i].costItem);
                 }
             }
+            Console.WriteLine("\n");
+        }
+
+        public bool LengthOfList()
+        {
+            if (_plaerInventory.Count != 0)
+                return true;
+
+            return false;
         }
 
         public void AddItemsPlaer(Item item)
@@ -57,9 +69,25 @@ namespace Abc041124
             _plaerInventory.Add(item);
         }
 
-        public void AddItemsPlaer(string name, int cost, int rgb)
+        public void AddItemsPlaer(string name, int rgb, int cost)
         {
-            _plaerInventory.Add(new Item(name, cost, rgb));
+            _plaerInventory.Add(new Item(name, rgb, cost));
+        }
+        public void RemuveToIndex(int index)
+        {
+            _plaerInventory.RemoveAt(index - 1);
+        }
+        public string ReturnNameSeller(int index)
+        {
+            return _plaerInventory[index - 1].nameItem;
+        }
+        public int ReturnCostSeller(int index)
+        {
+            return _plaerInventory[index - 1].costItem;
+        }
+        public int ReturnMultyPlex(int index)
+        {
+            return _plaerInventory[index - 1].multyPlex;
         }
     }
 }

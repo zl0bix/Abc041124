@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Inventory.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Plaer.cs" />
     <Compile Include="Program.cs" />

@@ -9,11 +9,17 @@ namespace Abc041124
     internal class Seller
     {
         List<Item> _sellerInventory = new List<Item>();
+        
+        public int money = 1000;
 
         public void ShowInventorySellor()
         {
-            Console.WriteLine("Товары магазина:\n");
+            Console.WriteLine("Деньги магазина\t" + money + "\nТовары магазина:\n");
 
+            if (_sellerInventory.Count == 0)
+            {
+                Console.WriteLine("У магазина нет предметов (((\n");
+            }
             for (int i = 0; i < _sellerInventory.Count; ++i) 
             {              
                 if (_sellerInventory[i].multyPlex == 1)
@@ -47,14 +53,23 @@ namespace Abc041124
                     Console.WriteLine("\tцена\t" + _sellerInventory[i].costItem);
                 }
             }
+            Console.WriteLine("\n");
         }
 
-        public void AddItemsSellor(Item item)
+        public bool LengthOfList()
+        {
+            if(_sellerInventory.Count != 0)
+                return true;
+
+            return false;
+        }
+
+        public void AddItemsSeller(Item item)
         {
             _sellerInventory.Add(item);
         }
 
-        public void AddItemsSellor(string  name, int cost, int rgb) 
+        public void AddItemsSeller(string  name, int cost, int rgb) 
         {
             _sellerInventory.Add(new Item(name,cost, rgb));
         }
@@ -63,11 +78,11 @@ namespace Abc041124
         {            
            _sellerInventory.RemoveAt(index - 1);
         }
-        public string ReturnNameSellor(int index)
+        public string ReturnNameSeller(int index)
         {
             return _sellerInventory[index -1].nameItem;
         }
-        public int ReturnCostSellor(int index)
+        public int ReturnCostSeller(int index)
         {
             return _sellerInventory[index - 1].costItem;
         }
