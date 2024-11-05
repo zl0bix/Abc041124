@@ -15,11 +15,11 @@ namespace Abc041124
 
        public Random rnd = new Random();
 
-        public Item(string nameItem, int costItem, int multyPlex)
+        public Item(string nameItem,  int multyPlex,int costItem)
         {
-            this.nameItem = nameItem;
-            this.costItem = costItem;
+            this.nameItem = nameItem;          
             this.multyPlex = multyPlex;
+            this.costItem = costItem;
         }
 
         public Item(Item item)
@@ -28,7 +28,7 @@ namespace Abc041124
             costItem = item.costItem;
             multyPlex = item.multyPlex;
         }
-
+/*
         public string[] randomaizerNames = { "Axe", "Sword", "Pickaxe", "Hoe", "Bow", "Mjolnir", "Sheld", "Dark Sword" };// 8 el
 
         public string RndStrArr()
@@ -52,7 +52,7 @@ namespace Abc041124
             Item tmp = new Item(RndStrArr(), cost, multy);
             return tmp;
         }
-        public int MuliPlex() { return rnd.Next(1, 5); }
+        public int MuliPlex() { return rnd.Next(1, 5); }*/
 
     }
 }

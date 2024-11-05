@@ -12,8 +12,10 @@ namespace Abc041124
 
         public void ShowInventorySellor()
         {
-            for(int i = 0; i < _sellerInventory.Count; ++i) 
-            {
+            Console.WriteLine("Товары магазина:\n");
+
+            for (int i = 0; i < _sellerInventory.Count; ++i) 
+            {              
                 if (_sellerInventory[i].multyPlex == 1)
                 {
                     Console.Write((i + 1) + "\tтовар\t\t");
@@ -51,5 +53,28 @@ namespace Abc041124
         {
             _sellerInventory.Add(item);
         }
+
+        public void AddItemsSellor(string  name, int cost, int rgb) 
+        {
+            _sellerInventory.Add(new Item(name,cost, rgb));
+        }
+
+        public void RemuveToIndex(int index)
+        {            
+           _sellerInventory.RemoveAt(index - 1);
+        }
+        public string ReturnNameSellor(int index)
+        {
+            return _sellerInventory[index -1].nameItem;
+        }
+        public int ReturnCostSellor(int index)
+        {
+            return _sellerInventory[index - 1].costItem;
+        }
+        public int ReturnMultyPlex(int index)
+        {
+            return _sellerInventory[index - 1].multyPlex;
+        }
+
     }
 }

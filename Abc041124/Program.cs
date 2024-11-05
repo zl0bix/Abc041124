@@ -6,101 +6,79 @@ using System.Threading.Tasks;
 
 namespace Abc041124
 {
-   
+
 
     class Program
     {
+        Random rnd = new Random();
         static void Main()
         {
-            Item item1 = new Item("Sword", 150, 3);
-            Item item2 = new Item("Axe", 110, 2);
-            Item item3 = new Item("Bolt", 50, 4);
-            Item item4= new Item("Sheld", 120, 1);
-            Item item5 = new Item();
-            Item item6 = new Item();
-            Item item7 = new Item();
-            item6 = new Item(item6.RndStrArr(),item6.multyPlex * 50, item6.MuliPlex());
-            item7 = new Item(item6.RndStrArr(),item6.multyPlex * 50, item6.MuliPlex());
-            Item item8 = new Item();
-            item8 =  item8.ReturnItemRnd();
-            Item item9 = null;
-            //item9 = new Item(item9.ReturnItemRnd());
+            int num;
 
+            string strTemp = "";
+            string logOut = "exit";
 
-            Seller seller = new Seller();
+            bool isChoice = false;
 
-            seller.AddItemsSellor(item1);
-            seller.AddItemsSellor(item2);
-            seller.AddItemsSellor(item3);
-            seller.AddItemsSellor(item4);
-            seller.AddItemsSellor(item5);
-            seller.AddItemsSellor(item6);
-            seller.AddItemsSellor(item7);
-            seller.AddItemsSellor(item8);
-           // seller.AddItemsSellor(item9);
+            Program program = new Program();
+            Seller sell = new Seller();
+            Plaer play = new Plaer();
 
-            seller.ShowInventorySellor();
+            sell.AddItemsSellor(program.RandomItems(), program.RandomMultyPlex(),  program.RandomCost() );
+            sell.AddItemsSellor(program.RandomItems(), program.RandomMultyPlex(),  program.RandomCost() );
+            sell.AddItemsSellor(program.RandomItems(), program.RandomMultyPlex(),  program.RandomCost() );
+            //play.AddItemsPlaer(program.RandomItems(), program.RandomMultyPlex(), program.RandomCost());
 
-           /* // Пример использования
-            Player player = new Player("Игрок 1");
-            player.Inventory.AddItem(new Item("Меч", 10));
-            player.Inventory.AddItem(new Item("Щит", 5));
-            player.Inventory.AddItem(new Item("Броня", 20));
+            sell.ShowInventorySellor();
+            play.ShowInventoryPlaer();
 
-            Console.WriteLine("Инвентарь игрока:");
-            player.Inventory.PrintInventory();
-
-            // Пример очистки инвентаря
-            player.Inventory.ClearInventory();
-            Console.WriteLine("Инвентарь после очистки:");
-            player.Inventory.PrintInventory();*/
-        }
-    }
-
-    /*class Player
-    {
-        public string Name { get; set; }
-        public Inventory Inventory { get; set; }
-
-        public Player(string name)
-        {
-            Name = name;
-            Inventory = new Inventory();
-        }
-    }
-
-    class Inventory
-    {
-        private List<Item> _items = new List<Item>();
-
-        public void AddItem(Item item)
-        {
-            _items.Add(item);
-        }
-
-        public void ClearInventory()
-        {
-            _items.Clear();
-        }
-
-        public void PrintInventory()
-        {
-            foreach (Item item in _items)
+            while (!isChoice && logOut != strTemp.ToLower())
             {
-                Console.WriteLine($"{item.Name} - {item.Quantity}");
+                Console.WriteLine("Нажмите 1 что бы купить\n2 что бы продать");
+                strTemp = Console.ReadLine();
+                if(int.TryParse(strTemp,out num))
+                {
+                    switch(num)
+                    {
+                        case 1:
+                            Console.Write("Выбери номер предмета -> ");
+                            num = Convert.ToInt32(Console.ReadLine());
+                            play.AddItemsPlaer(sell.ReturnNameSellor(num),sell.ReturnCostSellor(num),sell.ReturnMultyPlex(num));
+                            sell.RemuveToIndex(num);
+                            Console.ReadKey();
+                            Console.Clear();
+                            sell.ShowInventorySellor();
+                            play.ShowInventoryPlaer();
+                            Console.ReadKey();
+                            break;
+                    }
+                }
             }
+
+
+        }  
+        public string RandomItems()
+        {
+            string[] randomaizerNames = { "Axe", "Sword", "Pickaxe", "Hoe", "Bow", "Mjolnir", "Sheld", "D Sword" };
+            
+            return randomaizerNames[rnd.Next(0, 8)];
+        }
+        public int RandomMultyPlex()
+        { 
+            return rnd.Next(1, 5);
+        }
+
+        public int RandomCost()
+        {           
+            return rnd.Next(1, 5) * 50;
         }
     }
+}   
 
-    class Item
-    {
-        public string Name { get; set; }
-        public int Quantity { get; set; }
 
-        public Item(string name, int quantity)
-        {
-            Name = name;
-            Quantity = quantity;*/
-   /*     }
-    }*/
-}
+        
+
+
+        
+    
+    
