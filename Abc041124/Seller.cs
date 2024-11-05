@@ -12,11 +12,38 @@ namespace Abc041124
 
         public void ShowInventorySellor()
         {
-            foreach (Item item in _sellerInventory)
+            for(int i = 0; i < _sellerInventory.Count; ++i) 
             {
-                if (item == null)
-                    continue;
-                Console.WriteLine("Товар " + item.nameItem + " цена " + item.costItem);
+                if (_sellerInventory[i].multyPlex == 1)
+                {
+                    Console.Write((i + 1) + "\tтовар\t\t");
+                    Console.Write(_sellerInventory[i].nameItem);
+                    Console.WriteLine("\tцена\t" + _sellerInventory[i].costItem); //Console.ForegroundColor = ConsoleColor.Yellow;
+                }
+                else if (_sellerInventory[i].multyPlex == 2)
+                {
+                    Console.Write((i + 1) + "\tтовар\t\t");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write(_sellerInventory[i].nameItem);
+                    Console.ResetColor();
+                    Console.WriteLine("\tцена\t" + _sellerInventory[i].costItem);
+                }
+                else if(_sellerInventory[i].multyPlex == 3)
+                {
+                    Console.Write((i + 1) + "\tтовар\t\t");
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.Write(_sellerInventory[i].nameItem);
+                    Console.ResetColor();
+                    Console.WriteLine("\tцена\t" + _sellerInventory[i].costItem);
+                }
+                else
+                {
+                    Console.Write((i + 1) + "\tтовар\t\t");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(_sellerInventory[i].nameItem);
+                    Console.ResetColor();
+                    Console.WriteLine("\tцена\t" + _sellerInventory[i].costItem);
+                }
             }
         }
 

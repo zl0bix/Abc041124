@@ -12,15 +12,32 @@ namespace Abc041124
     {
         static void Main()
         {
-            Item item1 = new Item("Sword", 150, 2);
-            Item item2 = new Item("Axe", 110, 1);
-            Item item3 = new Item("Bolt", 50, 3);
+            Item item1 = new Item("Sword", 150, 3);
+            Item item2 = new Item("Axe", 110, 2);
+            Item item3 = new Item("Bolt", 50, 4);
+            Item item4= new Item("Sheld", 120, 1);
+            Item item5 = new Item();
+            Item item6 = new Item();
+            Item item7 = new Item();
+            item6 = new Item(item6.RndStrArr(),item6.multyPlex * 50, item6.MuliPlex());
+            item7 = new Item(item6.RndStrArr(),item6.multyPlex * 50, item6.MuliPlex());
+            Item item8 = new Item();
+            item8 =  item8.ReturnItemRnd();
+            Item item9 = null;
+            //item9 = new Item(item9.ReturnItemRnd());
+
 
             Seller seller = new Seller();
 
             seller.AddItemsSellor(item1);
             seller.AddItemsSellor(item2);
             seller.AddItemsSellor(item3);
+            seller.AddItemsSellor(item4);
+            seller.AddItemsSellor(item5);
+            seller.AddItemsSellor(item6);
+            seller.AddItemsSellor(item7);
+            seller.AddItemsSellor(item8);
+           // seller.AddItemsSellor(item9);
 
             seller.ShowInventorySellor();
 
