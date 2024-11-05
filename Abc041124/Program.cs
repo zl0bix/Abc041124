@@ -6,30 +6,30 @@ using System.Threading.Tasks;
 
 namespace Abc041124
 {
-
-
     class Program
     {
         Random rnd = new Random();
         static void Main()
         {
             int num;
-            int numCoice;
-
+           
             string strTemp = "";
             string logOut = "exit";
 
             bool isChoice = false;
 
             Program program = new Program();
+
             Seller sell = new Seller();
+
             Plaer play = new Plaer();
 
-            sell.AddItemsSeller(program.RandomItems(), program.RandomMultyPlex(),  program.RandomCost() );
-            sell.AddItemsSeller(program.RandomItems(), program.RandomMultyPlex(),  program.RandomCost() );
-            sell.AddItemsSeller(program.RandomItems(), program.RandomMultyPlex(),  program.RandomCost() );
-            sell.AddItemsSeller(program.RandomItems(), program.RandomMultyPlex(),  program.RandomCost() );
-            sell.AddItemsSeller(program.RandomItems(), program.RandomMultyPlex(),  program.RandomCost() );
+            sell.AddItemsSeller(program.RandomItems(), program.RandomMultyPlex(), program.RandomCost());
+            sell.AddItemsSeller(program.RandomItems(), program.RandomMultyPlex(), program.RandomCost());
+            sell.AddItemsSeller(program.RandomItems(), program.RandomMultyPlex(), program.RandomCost());
+            sell.AddItemsSeller(program.RandomItems(), program.RandomMultyPlex(), program.RandomCost());
+            sell.AddItemsSeller(program.RandomItems(), program.RandomMultyPlex(), program.RandomCost());
+
             play.AddItemsPlaer(program.RandomItems(), program.RandomMultyPlex(), program.RandomCost());
 /*
             sell.ShowInventorySellor();
@@ -41,6 +41,7 @@ namespace Abc041124
                 play.ShowInventoryPlaer();
 
                 Console.Write("(1) Нажмите что бы купить\n(2) Нажмите что бы продать\nЧто ты хочешь сделать?\nТвой выбор -> ");
+
                 strTemp = Console.ReadLine();
 
                 if (int.TryParse(strTemp, out num))
@@ -59,6 +60,7 @@ namespace Abc041124
 
                         default:
                             Console.WriteLine("Неправельный ввод\nНажмите любую клавишу\n");
+
                             Console.ReadKey();
                             Console.Clear();
                             break;
@@ -67,6 +69,7 @@ namespace Abc041124
                 else
                 {
                     Console.WriteLine("Неправельный ввод\nНажмите любую клавишу\n");
+
                     Console.ReadKey();
                     Console.Clear();
                 }
@@ -125,10 +128,13 @@ namespace Abc041124
                 {
 
                     Console.Clear();
+
                     sell.ShowInventorySellor();
                     play.ShowInventoryPlaer();
+
                     Console.WriteLine("Товаров нет\n");                   
                     Console.WriteLine("Нажмите любую клавишу\n");
+
                     Console.ReadKey();
                     Console.Clear();
                 }
@@ -139,6 +145,7 @@ namespace Abc041124
                 if (play.LengthOfList())
                 {
                     Console.Write("Выбери номер предмета -> ");
+
                     strTemp = Console.ReadLine();
 
                     Console.Clear();
@@ -153,20 +160,29 @@ namespace Abc041124
                         {
                             play.money += play.ReturnCostSeller(num);
                             sell.money -= play.ReturnCostSeller(num);
+
                             sell.AddItemsSeller(play.ReturnNameSeller(num), play.ReturnMultyPlex(num), play.ReturnCostSeller(num));
+
                             play.RemuveToIndex(num);
+
                             sell.ShowInventorySellor();
                             play.ShowInventoryPlaer();
+
                             Console.WriteLine("Нажмите любую клавишу\n");
+
                             Console.ReadKey();
                             Console.Clear();
                         }
                         else
-                        { Console.Clear();
+                        { 
+                            Console.Clear();
+
                             sell.ShowInventorySellor();
                             play.ShowInventoryPlaer();
+
                             Console.WriteLine("У магазина нет денег!!!");
                             Console.WriteLine("Нажмите любую клавишу\n");
+
                             Console.ReadKey();
                             Console.Clear();
                         }
@@ -175,10 +191,13 @@ namespace Abc041124
                 else
                 {
                     Console.Clear();
+
                     sell.ShowInventorySellor();
                     play.ShowInventoryPlaer();
+
                     Console.WriteLine("Товаров нет\n");                   
                     Console.WriteLine("Нажмите любую клавишу\n");
+
                     Console.ReadKey();
                     Console.Clear();
                 }

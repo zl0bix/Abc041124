@@ -13,21 +13,12 @@ namespace Abc041124
         public int costItem { get; private set; }
         public int multyPlex { get; private set; }
 
-        //public Random rnd = new Random();
-
         public Item(string nameItem, int multyPlex, int costItem)
         {
             this.nameItem = nameItem;
             this.multyPlex = multyPlex;
             this.costItem = costItem;
-        }
-
-        public Item(Item item)
-        {
-            nameItem = item.nameItem;
-            costItem = item.costItem;
-            multyPlex = item.multyPlex;
-        }
+        }      
     }
 }
 

@@ -20,6 +20,7 @@ namespace Abc041124
             {
                 Console.WriteLine("У магазина нет предметов (((\n");
             }
+
             for (int i = 0; i < _sellerInventory.Count; ++i) 
             {              
                 if (_sellerInventory[i].multyPlex == 1)
@@ -28,6 +29,7 @@ namespace Abc041124
                     Console.Write(_sellerInventory[i].nameItem);
                     Console.WriteLine("\tцена\t" + _sellerInventory[i].costItem); //Console.ForegroundColor = ConsoleColor.Yellow;
                 }
+
                 else if (_sellerInventory[i].multyPlex == 2)
                 {
                     Console.Write((i + 1) + "\tтовар\t\t");
@@ -36,6 +38,7 @@ namespace Abc041124
                     Console.ResetColor();
                     Console.WriteLine("\tцена\t" + _sellerInventory[i].costItem);
                 }
+
                 else if(_sellerInventory[i].multyPlex == 3)
                 {
                     Console.Write((i + 1) + "\tтовар\t\t");
@@ -44,6 +47,7 @@ namespace Abc041124
                     Console.ResetColor();
                     Console.WriteLine("\tцена\t" + _sellerInventory[i].costItem);
                 }
+
                 else
                 {
                     Console.Write((i + 1) + "\tтовар\t\t");
@@ -78,18 +82,20 @@ namespace Abc041124
         {            
            _sellerInventory.RemoveAt(index - 1);
         }
+
         public string ReturnNameSeller(int index)
         {
             return _sellerInventory[index -1].nameItem;
         }
+
         public int ReturnCostSeller(int index)
         {
             return _sellerInventory[index - 1].costItem;
         }
+
         public int ReturnMultyPlex(int index)
         {
             return _sellerInventory[index - 1].multyPlex;
         }
-
     }
 }
