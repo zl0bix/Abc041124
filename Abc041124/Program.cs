@@ -92,36 +92,39 @@ namespace Abc041124
 
                         strTemp = "";
 
-                        if (play.money > sell.ReturnCostSeller(num))
+                        if (sell.LengthOfList(num))
                         {
-                            sell.money += sell.ReturnCostSeller(num);
-                            play.money -= sell.ReturnCostSeller(num);
+                            if (play.money > sell.ReturnCostSeller(num))
+                            {
+                                sell.money += sell.ReturnCostSeller(num);
+                                play.money -= sell.ReturnCostSeller(num);
 
-                            play.AddItemsPlaer(sell.ReturnNameSeller(num), sell.ReturnMultyPlex(num), sell.ReturnCostSeller(num));
+                                play.AddItemsPlaer(sell.ReturnNameSeller(num), sell.ReturnMultyPlex(num), sell.ReturnCostSeller(num));
 
-                            sell.RemuveToIndex(num);    
-                            
-                            sell.ShowInventorySellor();
-                            play.ShowInventoryPlaer();
+                                sell.RemuveToIndex(num);
 
-                            Console.WriteLine("Нажмите любую клавишу\n");
+                                sell.ShowInventorySellor();
+                                play.ShowInventoryPlaer();
 
-                            Console.ReadKey();
-                            Console.Clear();
+                                Console.WriteLine("Нажмите любую клавишу\n");
+
+                                Console.ReadKey();
+                                Console.Clear();
+                            }
+                            else
+                            {
+                                Console.Clear();
+
+                                sell.ShowInventorySellor();
+                                play.ShowInventoryPlaer();
+
+                                Console.WriteLine("У вас нет денег!!!");
+                                Console.WriteLine("Нажмите любую клавишу\n");
+
+                                Console.ReadKey();
+                                Console.Clear();
+                            }
                         }
-                        else
-                        {
-                            Console.Clear();
-
-                            sell.ShowInventorySellor();
-                            play.ShowInventoryPlaer();
-
-                            Console.WriteLine("У вас нет денег!!!");
-                            Console.WriteLine("Нажмите любую клавишу\n");
-
-                            Console.ReadKey();
-                            Console.Clear();
-                        } 
                     }
                 }
                 else
@@ -156,35 +159,38 @@ namespace Abc041124
 
                         strTemp = "";
 
-                        if (sell.money > play.ReturnCostSeller(num))
+                        if (play.LengthOfList(num))
                         {
-                            play.money += play.ReturnCostSeller(num);
-                            sell.money -= play.ReturnCostSeller(num);
+                            if (sell.money > play.ReturnCostSeller(num))
+                            {
+                                play.money += play.ReturnCostSeller(num);
+                                sell.money -= play.ReturnCostSeller(num);
 
-                            sell.AddItemsSeller(play.ReturnNameSeller(num), play.ReturnMultyPlex(num), play.ReturnCostSeller(num));
+                                sell.AddItemsSeller(play.ReturnNameSeller(num), play.ReturnMultyPlex(num), play.ReturnCostSeller(num));
 
-                            play.RemuveToIndex(num);
+                                play.RemuveToIndex(num);
 
-                            sell.ShowInventorySellor();
-                            play.ShowInventoryPlaer();
+                                sell.ShowInventorySellor();
+                                play.ShowInventoryPlaer();
 
-                            Console.WriteLine("Нажмите любую клавишу\n");
+                                Console.WriteLine("Нажмите любую клавишу\n");
 
-                            Console.ReadKey();
-                            Console.Clear();
-                        }
-                        else
-                        { 
-                            Console.Clear();
+                                Console.ReadKey();
+                                Console.Clear();
+                            }
+                            else
+                            {
+                                Console.Clear();
 
-                            sell.ShowInventorySellor();
-                            play.ShowInventoryPlaer();
+                                sell.ShowInventorySellor();
+                                play.ShowInventoryPlaer();
 
-                            Console.WriteLine("У магазина нет денег!!!");
-                            Console.WriteLine("Нажмите любую клавишу\n");
+                                Console.WriteLine("У магазина нет денег!!!");
+                                Console.WriteLine("Нажмите любую клавишу\n");
 
-                            Console.ReadKey();
-                            Console.Clear();
+                                Console.ReadKey();
+                                Console.Clear();
+                            }
                         }
                     }
                 }
@@ -217,8 +223,7 @@ namespace Abc041124
         public int RandomCost()
         {           
             return rnd.Next(1, 5) * 50;
-        }
-        
+        }        
     }
 }   
 

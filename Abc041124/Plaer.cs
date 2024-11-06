@@ -68,6 +68,13 @@ namespace Abc041124
             return false;
         }
 
+        public bool LengthOfList(int num)
+        {
+            if(num <= _plaerInventory.Count && num>0)
+                return true;
+            return false;
+        }
+
         public void AddItemsPlaer(Item item)
         {
             _plaerInventory.Add(item);
